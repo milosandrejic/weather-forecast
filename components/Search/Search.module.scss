@@ -12,18 +12,18 @@
 .searchForm {
   box-sizing: border-box;
   color: #ffffff;
-  font-weight: 400;
   width: 100%;
-  background: rgba($color-primary, 0.1);
+  background: rgba($color-primary, 0.2);
   outline: none;
-  border: 1px solid $color-primary;
   height: 3rem;
-  font-size: 1.4rem;
   padding-left: 1rem;
-  border: 1p solid $color-primary;
+  border: 1px solid rgba($color-primary, 0.5);
+  border-radius: 4px;
+  font-size: 1.5rem;
 
   &::-webkit-input-placeholder {
     color: currentColor;
+    font-size: 1.3rem;
   }
 
   &:focus{
@@ -50,7 +50,7 @@
   padding: 1rem 0.5rem;
   width: 100%;
   cursor: pointer;
-  background: rgba($color-primary, 0.1);
+  background: rgba($color-primary, 0.2);
   transition: background 0.2s;
 
   &:hover {
