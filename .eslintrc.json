@@ -1,0 +1,16 @@
+{
+    "extends": ["airbnb", "prettier"],
+    "plugins": ["prettier"],
+    "rules": {
+        "no-unused-vars": "warn",
+        "react/jsx-filename-extension": "off",
+        "react/jsx-props-no-spreading": "off",
+        "arrow-body-style":"off",
+        "react/forbid-prop-types": "off",
+        "react/no-typos": "warn",
+        "react/no-multi-comp": "error",
+        "prettier/prettier": ["warn", {
+           "endOfLine":"auto"
+         }]
+    }   
+}

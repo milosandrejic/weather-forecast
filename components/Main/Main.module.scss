@@ -1,0 +1,13 @@
+@import '../../styles/variables/variables';
+
+.main {
+  height: 100vh;
+  background: linear-gradient(
+      rgba($color-background, 0.3) 0%,
+      rgba($color-background, 0.4) 20%,
+      rgba($color-background, 0.5) 40%,
+      rgba($color-background, 0.8) 100%
+    ),
+    url('../../public/images/rain-landscape.jpg');
+  background-size: 100% 100%;
+}

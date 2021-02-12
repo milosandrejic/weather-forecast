@@ -1,0 +1,83 @@
+version: 2.1
+executors:
+  app-executor:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/repo
+aliases:
+  - &show-current-branch-name
+    run:
+      name: Show current branch name
+      command: echo ${CIRCLE_BRANCH}
+  - &restore-cache
+    restore_cache:
+      keys:
+        - app-{{ checksum "package.json" }}
+        - app-
+  - &save-cache
+    save_cache:
+      key: dependency-cache-{{ checksum "package.json" }}
+      paths:
+        - ./node_modules
+        - ./.next/cache
+  - &install-dependencies
+    run:
+      name: Install dependencies
+      command: npm install
+  - &build-project
+    run:
+      name: Build project
+      command: |
+        npm install
+        npm run build
+        echo "Build completed"
+jobs:
+  build:
+    executor: app-executor
+    steps:
+      - checkout
+      - *show-current-branch-name
+      - *restore-cache
+      - *install-dependencies
+      - *save-cache
+      - *build-project
+  linting:
+    executor: app-executor
+    steps:
+      - checkout
+      - *show-current-branch-name
+      - *restore-cache
+      - run:
+          name: run linting
+          command: npm run lint
+
+  prettier:
+    executor: app-executor
+    steps:
+      - checkout
+      - *show-current-branch-name
+      - *restore-cache
+      - run:
+          name: run prettier check
+          command: npm run prettier
+
+workflows:
+  build_and_deploy:
+    jobs:
+      - build
+      - linting:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - main
+                - develop 
+      - prettier:
+          requires:
+            - linting
+          filters:
+             branches:
+               only:
+                 - main
+                 - develop 

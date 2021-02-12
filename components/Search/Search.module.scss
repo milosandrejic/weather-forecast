@@ -1,0 +1,60 @@
+@import '../../styles/variables/variables';
+
+.container {
+  font-size: 10px;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  color: #ffffff;
+  font-weight: 400;
+  width: 20%;
+}
+
+.searchForm {
+  box-sizing: border-box;
+  color: #ffffff;
+  font-weight: 400;
+  width: 100%;
+  background: rgba($color-primary, 0.1);
+  outline: none;
+  border: 1px solid $color-primary;
+  height: 3rem;
+  font-size: 1.4rem;
+  padding-left: 1rem;
+  border: 1p solid $color-primary;
+
+  &::-webkit-input-placeholder {
+    color: currentColor;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+}
+
+.searchResultList {
+  list-style: none;
+  font-size: 1.5rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.searchResultListItem {
+  font-family: 'Roboto', sans-serif;
+  list-style: none;
+  box-sizing: border-box;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 1.5rem;
+  padding: 1rem 0.5rem;
+  width: 100%;
+  cursor: pointer;
+  background: rgba($color-primary, 0.1);
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba($color-primary, 0.3);
+  }
+
+}
