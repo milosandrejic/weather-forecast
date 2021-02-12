@@ -1,3 +1,5 @@
+[![<ORG_NAME>](https://circleci.com/gh/milosandrejic/weather-forecast.svg?style=shield)](https://app.circleci.com/pipelines/github/milosandrejic/weather-forecast)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
