@@ -10,7 +10,7 @@ const Search = () => {
         placeholder="Search place"
       />
       <ul className={styles.searchResultList}>
-        <li className={styles.searchResultListItem}>Belgrade</li>
+        <li className={styles.searchResultListItem}>London</li>
       </ul>
     </div>
   );
