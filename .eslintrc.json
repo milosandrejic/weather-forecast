@@ -9,6 +9,7 @@
         "react/forbid-prop-types": "off",
         "react/no-typos": "warn",
         "react/no-multi-comp": "error",
+        "react/jsx-one-expression-per-line": "off",
         "prettier/prettier": ["warn", {
            "endOfLine":"auto"
          }]
