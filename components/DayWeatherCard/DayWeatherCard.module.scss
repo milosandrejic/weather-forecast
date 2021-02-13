@@ -1,0 +1,51 @@
+@import '../../styles/variables/variables';
+
+.card {
+  width: 7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: center;
+  margin: 1rem 3rem;
+  color: $color-primary;
+
+
+  & > * {
+    margin: 0.5rem 0;
+  }
+
+}
+
+.cardActive {
+  background: rgba(grey, 0.3);
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 90%,
+    60% 90%,
+    50% 100%,
+    40% 90%,
+    0% 90%
+  );
+}
+
+.dayName {
+  font-size: 1.8rem;
+}
+
+.tempMax {
+  font-size: 1.9rem;
+}
+
+.tempMin {
+  font-size: 1.3rem;
+  padding-left: 1rem;
+}
+
+.weatherDesc {
+  font-size: 1.4rem;
+}
+
+.weatherIcon {
+  width: 30%;
+}
