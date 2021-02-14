@@ -2,6 +2,7 @@
     "extends": ["airbnb", "prettier"],
     "plugins": ["prettier"],
     "rules": {
+        "no-use-before-define": "off",
         "no-unused-vars": "warn",
         "react/jsx-filename-extension": "off",
         "react/jsx-props-no-spreading": "off",
@@ -10,6 +11,8 @@
         "react/no-typos": "warn",
         "react/no-multi-comp": "error",
         "react/jsx-one-expression-per-line": "off",
+        "react/require-default-props": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
         "prettier/prettier": ["warn", {
            "endOfLine":"auto"
          }]

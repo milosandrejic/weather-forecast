@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import propTypes from 'prop-types';
+
 import styles from './DayWeatherCard.module.scss';
 
-const DayWeatherCard = () => {
+const DayWeatherCard = (props) => {
+  const { clicked, slideWidth, resetClickHandler } = props;
+
+  const dayCard = useRef();
+
+  const handleIndicatorClick = () => {
+    dayCard.current.style.transform = `translateX(-${slideWidth}px`;
+    dayCard.current.style.transition = 'all 2s';
+    resetClickHandler();
+  };
+
+  useEffect(() => {
+    if (clicked) handleIndicatorClick();
+  }, [clicked]);
+
   return (
-    <div className={styles.slider}>
+    <div className={styles.slider} ref={dayCard}>
       <div className={styles.card}>
         <h4 className={styles.dayName}>Sat 13</h4>
         <img
@@ -18,6 +34,12 @@ const DayWeatherCard = () => {
       </div>
     </div>
   );
+};
+
+DayWeatherCard.propTypes = {
+  clicked: propTypes.bool,
+  slideWidth: propTypes.number,
+  resetClickHandler: propTypes.func,
 };
 
 export default DayWeatherCard;
