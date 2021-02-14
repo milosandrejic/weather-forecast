@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint \"./{pages, components}/**/*.js\"",
+    "lint": "eslint --cache \"./{pages, components}/**/*.js\"",
     "prettier": "prettier --check \"./{pages, components, styles}/**/*.{js,scss}\""
   },
   "dependencies": {

@@ -1,7 +1,6 @@
 @import '../../styles/variables/variables';
 
 .main {
-  height: 100vh;
   background: linear-gradient(
       rgba($color-background, 0.3) 0%,
       rgba($color-background, 0.4) 20%,
@@ -10,4 +9,5 @@
     ),
     url('../../public/images/rain-landscape.jpg');
   background-size: 100% 100%;
+  width: 100%;
 }

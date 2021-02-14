@@ -1,0 +1,33 @@
+.slider {
+  width: 100%;
+  padding: 4rem 10%;
+  position: relative;
+  display: flex;
+}
+
+.sliderCardArea {
+  display: flex;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  overflow: hidden;
+}
+
+.indicator {
+  font-size: 5rem;
+  font-weight: 400;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.indicatorLeft {
+  left: 5rem;
+}
+
+.indicatorRight {
+  right: 5rem;
+}
