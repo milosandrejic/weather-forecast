@@ -1,11 +1,8 @@
 @import '../../styles/variables/variables';
 
 .main {
-  background: linear-gradient(
-      rgba($color-background, 0.4), rgba($color-background, 0.4)
-    ),
-    url('../../public/images/drizzle-landscape.jpg');
-  background-size: 100% 100%;
   width: 100%;
-  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-background;
 }
