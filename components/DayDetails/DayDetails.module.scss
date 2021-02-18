@@ -25,13 +25,6 @@
   margin: 1rem 0 4rem 11%;
 }
 
-.progressCircle {
-  stroke-dasharray: 301.59 301.59;
-  stroke-dashoffset: 150;
-  transform-origin: 50% 50%;
-  transform: rotate(-90deg);
-}
-
 .icon {
   font-size: 3.5rem;
   margin-right: 1rem;
@@ -45,8 +38,40 @@
 
 .moonPhaseItem {
   margin-right: 1rem;
+  color: darken($color-primary, 40%);
+}
+
+.moonPhaseItemActive {
+  color: $color-primary;
 }
 
 .circleContainer {
   margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.progressCircle {
+  stroke-width: 8px;
+  fill: transparent;
+}
+
+.progressCircleFront {
+  stroke-dasharray: 301.59 301.59;
+  stroke-dashoffset: 150;
+  transform-origin: 50% 50%;
+  transform: rotate(-90deg);
+  stroke: #34ace0;
+}
+
+.progressCircleBack {
+  stroke: rgba(rgb(7, 7, 7), 0.2);
+}
+
+.progressCircleText {
+  font-size: 4rem;
+  transform: translateY(1.2rem);
+  fill: $color-primary;
+  font-weight: bold;
 }
