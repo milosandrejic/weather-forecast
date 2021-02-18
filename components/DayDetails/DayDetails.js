@@ -23,7 +23,7 @@ const DayDetails = () => {
               className={`${styles.moonPhaseItem} wi wi-moon-waxing-crescent-4`}
             />
             <li
-              className={`${styles.moonPhaseItem} wi wi-moon-first-quarter`}
+              className={`${styles.moonPhaseItem} ${styles.moonPhaseItemActive} wi wi-moon-first-quarter`}
             />
             <li
               className={`${styles.moonPhaseItem} wi wi-moon-waxing-gibbous-4`}
@@ -57,51 +57,51 @@ const DayDetails = () => {
           <div className={styles.row}>
             <div className={styles.circleContainer}>
               <h4 className={styles.detailName}>Precipitation</h4>
-              <svg height={100} width={100} className={styles.circle}>
+              <svg height={140} width={140} className={styles.circle}>
                 <circle
-                  strokeWidth={1}
-                  fill="transparent"
-                  r={48}
-                  cx={50}
-                  cy={50}
-                  stroke="white"
+                  className={` ${styles.progressCircle} ${styles.progressCircleBack}`}
+                  r={55}
+                  cx={70}
+                  cy={70}
                 />
                 <circle
-                  className={styles.progressCircle}
-                  strokeWidth={1}
-                  fill="transparent"
-                  r={48}
-                  cx={50}
-                  cy={50}
-                  stroke="red"
+                  className={` ${styles.progressCircle} ${styles.progressCircleFront}`}
+                  r={55}
+                  cx={70}
+                  cy={70}
                 />
-                <text textAnchor="middle" x="50%" y="50%">
-                  Some text
+                <text
+                  textAnchor="middle"
+                  x="50%"
+                  y="50%"
+                  className={styles.progressCircleText}
+                >
+                  58%
                 </text>
               </svg>
             </div>
             <div className={styles.circleContainer}>
               <h4 className={styles.detailName}>Humidity</h4>
-              <svg height={100} width={100} className={styles.circle}>
+              <svg height={140} width={140} className={styles.circle}>
                 <circle
-                  strokeWidth={1}
-                  fill="transparent"
-                  r={48}
-                  cx={50}
-                  cy={50}
-                  stroke="white"
+                  className={` ${styles.progressCircle} ${styles.progressCircleBack}`}
+                  r={55}
+                  cx={70}
+                  cy={70}
                 />
                 <circle
-                  className={styles.progressCircle}
-                  strokeWidth={1}
-                  fill="transparent"
-                  r={48}
-                  cx={50}
-                  cy={50}
-                  stroke="red"
+                  className={` ${styles.progressCircle} ${styles.progressCircleFront}`}
+                  r={55}
+                  cx={70}
+                  cy={70}
                 />
-                <text textAnchor="middle" x="50%" y="50%">
-                  Some text
+                <text
+                  textAnchor="middle"
+                  x="50%"
+                  y="50%"
+                  className={styles.progressCircleText}
+                >
+                  6%
                 </text>
               </svg>
             </div>
@@ -109,51 +109,51 @@ const DayDetails = () => {
           <div className={styles.row}>
             <div className={styles.circleContainer}>
               <h4 className={styles.detailName}>UV Index</h4>
-              <svg height={100} width={100} className={styles.circle}>
+              <svg height={140} width={140} className={styles.circle}>
                 <circle
-                  strokeWidth={1}
-                  fill="transparent"
-                  r={48}
-                  cx={50}
-                  cy={50}
-                  stroke="white"
+                  className={` ${styles.progressCircle} ${styles.progressCircleBack}`}
+                  r={55}
+                  cx={70}
+                  cy={70}
                 />
                 <circle
-                  className={styles.progressCircle}
-                  strokeWidth={1}
-                  fill="transparent"
-                  r={48}
-                  cx={50}
-                  cy={50}
-                  stroke="red"
+                  className={` ${styles.progressCircle} ${styles.progressCircleFront}`}
+                  r={55}
+                  cx={70}
+                  cy={70}
                 />
-                <text textAnchor="middle" x="50%" y="50%">
-                  Some text
+                <text
+                  textAnchor="middle"
+                  x="50%"
+                  y="50%"
+                  className={styles.progressCircleText}
+                >
+                  90%
                 </text>
               </svg>
             </div>
             <div className={styles.circleContainer}>
               <h4 className={styles.detailName}>Wind</h4>
-              <svg height={100} width={100} className={styles.circle}>
+              <svg height={140} width={140} className={styles.circle}>
                 <circle
-                  strokeWidth={1}
-                  fill="transparent"
-                  r={48}
-                  cx={50}
-                  cy={50}
-                  stroke="white"
+                  className={` ${styles.progressCircle} ${styles.progressCircleBack}`}
+                  r={55}
+                  cx={70}
+                  cy={70}
                 />
                 <circle
-                  className={styles.progressCircle}
-                  strokeWidth={1}
-                  fill="transparent"
-                  r={48}
-                  cx={50}
-                  cy={50}
-                  stroke="red"
+                  className={` ${styles.progressCircle} ${styles.progressCircleFront}`}
+                  r={55}
+                  cx={70}
+                  cy={70}
                 />
-                <text textAnchor="middle" x="50%" y="50%">
-                  Some text
+                <text
+                  textAnchor="middle"
+                  x="50%"
+                  y="50%"
+                  className={styles.progressCircleText}
+                >
+                  25%
                 </text>
               </svg>
             </div>
