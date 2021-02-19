@@ -24,7 +24,7 @@ const DayWeatherCard = (props) => {
         <h4 className={styles.dayName}>Sat 13</h4>
         <img
           className={styles.weatherIcon}
-          src="./weather-icons/angry_clouds.svg"
+          src="./weather-icons/01d.svg"
           alt="weather icon"
         />
         <p className={styles.tempMax}>
