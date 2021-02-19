@@ -8,7 +8,7 @@ const PlaceHeading = () => {
       <div className={styles.weatherInfoBox}>
         <img
           className={styles.weatherIcon}
-          src="./weather-icons/night_full_moon_rain_thunder.svg"
+          src="./weather-icons/01d.svg"
           alt="weather icon"
         />
         <p className={styles.temp}>-3</p>
