@@ -7,15 +7,21 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --cache \"./{pages, components}/**/*.js\"",
-    "prettier": "prettier --check \"./{pages, components, styles}/**/*.{js,scss}\""
+    "prettier": "prettier --check \"./{pages, components, styles, redux}/**/*.{js,scss}\""
   },
   "dependencies": {
     "axios": "^0.21.1",
     "next": "10.0.6",
+    "next-redux-wrapper": "^6.0.2",
     "node-sass": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "swr": "^0.4.2"
   },
   "devDependencies": {
     "eslint": "^7.2.0",
