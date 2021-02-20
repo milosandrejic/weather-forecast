@@ -4,7 +4,6 @@
     "rules": {
         "import/prefer-default-export": "warn",
         "no-use-before-define": "off",
-        "import/prefer-default-export": "warn",
         "no-unused-vars": "warn",
         "react/jsx-filename-extension": "off",
         "react/jsx-props-no-spreading": "off",
