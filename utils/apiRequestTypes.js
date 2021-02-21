@@ -1,4 +1,4 @@
 export default {
   currentWeather: 'current',
-  dailyForecast: 'daily',
+  dailyForecast: 'forecast/daily',
 };
