@@ -16,20 +16,22 @@ aliases:
         - app-
   - &save-cache
     save_cache:
-      key: dependency-cache-{{ checksum "package.json" }}
+      key: dependency-cache-{{ .Environment.CACHE_VERSION }}-{{ checksum "package.json" }}
       paths:
         - ./node_modules
         - ./.next/cache
   - &install-dependencies
     run:
       name: Install dependencies
-      command: npm install
+      command: |
+        mkdir -p artifacts
+        npm install
   - &build-project
     run:
       name: Build project
       command: |
         npm install
-        npm run build
+        npm run build 
         echo "Build completed"
 jobs:
   build:
