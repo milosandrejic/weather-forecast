@@ -29,7 +29,7 @@ aliases:
       name: Build project
       command: |
         npm install
-        npm run build
+        npm run build 
         echo "Build completed"
 jobs:
   build:
