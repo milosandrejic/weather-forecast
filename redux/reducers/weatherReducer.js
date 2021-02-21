@@ -4,16 +4,17 @@ const initialState = {
   currentWeather: {},
   dailyForecast: [],
   dayDetails: {},
+  moonPhase: {},
 };
 
-export default (state = initialState, action) => {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.GET_CURRENT_WEATHER:
       return {
         ...state,
         currentWeather: action.payload,
       };
-    case actionTypes.GET_16DAY_WEATHER:
+    case actionTypes.GET_16_DAY_FORECAST:
       return {
         ...state,
         dailyForecast: action.payload,
@@ -21,9 +22,9 @@ export default (state = initialState, action) => {
     case actionTypes.GET_DAY_DETAILS:
       return {
         ...state,
-        dayDetails: action.payload,
+        dayDetails: state.dailyForecast[action.payload],
       };
     default:
       return state;
   }
-};
+}
