@@ -42,7 +42,7 @@ aliases:
           git push https://heroku:${HEROKU_API_KEY}@git.heroku.com/weather-forecast-dev.git ${CIRCLE_BRANCH}:master -f
         elif [ "${CIRCLE_BRANCH}" == "main"  ]
         then
-          git push https://heroku:${HEROKU_API_KEY}@git.heroku.com/weather-info-forecast.git ${CIRCLE_BRANCH}:master -f
+          git push https://heroku:${HEROKU_API_KEY}@git.heroku.com/weather-forecast-info.git ${CIRCLE_BRANCH}:master -f
         fi
   
 jobs:
