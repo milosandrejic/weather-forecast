@@ -12,6 +12,10 @@
     "lint": "eslint \"./{pages, components}/**/*.js\"",
     "prettier": "prettier --check \"./{pages, components, styles, redux}/**/*.{js,scss}\""
   },
+  "cacheDirectories": [
+    ".next/cache",
+    "node_modules/"
+  ],
   "dependencies": {
     "axios": "^0.21.1",
     "next": "10.0.6",
