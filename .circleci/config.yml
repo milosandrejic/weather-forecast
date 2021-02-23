@@ -37,7 +37,7 @@ aliases:
     run:
       name: Deploy code to heroku
       command: |
-        if["${CIRCLE_BRANCH}" == "develop"]
+        if["${CIRCLE_BRANCH}" == "develop"];
         then
           git push https://heroku:${HEROKU_API_KEY}@git.heroku.com/weather-forecast-dev.git ${CIRCLE_BRANCH}
         elif["${CIRCLE_BRANCH" == "main"}]
