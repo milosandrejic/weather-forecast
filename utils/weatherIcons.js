@@ -1,1 +1,3 @@
-export default (iconCode) => `./weather-icons/${iconCode}.svg`;
+const getWeatherIcon = (iconCode) => `./weather-icons/${iconCode}.png`;
+
+export default getWeatherIcon;

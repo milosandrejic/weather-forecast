@@ -2,6 +2,8 @@
     "extends": ["airbnb", "prettier"],
     "plugins": ["prettier"],
     "rules": {
+        "camelcase": "off",
+        "no-shadow": "off",
         "import/prefer-default-export": "off",
         "no-use-before-define": "off",
         "no-unused-vars": "warn",
@@ -14,6 +16,7 @@
         "react/jsx-one-expression-per-line": "off",
         "react/require-default-props": "off",
         "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
         "prettier/prettier": ["warn", {
            "endOfLine":"auto"
          }]

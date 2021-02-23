@@ -1,4 +1,4 @@
-const dispatchAction = (type, payload, dispatch) => {
+const dispatchAction = (type, payload = {}, dispatch) => {
   return dispatch({ type, payload });
 };
 

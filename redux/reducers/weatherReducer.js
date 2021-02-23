@@ -5,6 +5,7 @@ const initialState = {
   dailyForecast: [],
   dayDetails: {},
   moonPhase: {},
+  activeCardIndex: 0,
 };
 
 export default function reducer(state = initialState, action) {
@@ -22,7 +23,12 @@ export default function reducer(state = initialState, action) {
     case actionTypes.GET_DAY_DETAILS:
       return {
         ...state,
-        dayDetails: state.dailyForecast[action.payload],
+        dayDetails: state.dailyForecast[state.activeCardIndex],
+      };
+    case actionTypes.SET_ACTIVE_CARD_INDEX:
+      return {
+        ...state,
+        activeCardIndex: action.payload,
       };
     default:
       return state;

@@ -1,9 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import DayWeatherCard from '../DayWeatherCard/DayWeatherCard';
 import styles from './Slider.module.scss';
 import indicatorType from '../../utils/slideIndicatorTypes';
 
-const Slider = () => {
+const Slider = (props) => {
+  const { forecast } = props;
+
   const sliderStart = useRef();
   const sliderEnd = useRef();
   const sliderViewportStart = useRef();
@@ -33,9 +37,8 @@ const Slider = () => {
       setPrevCalculatedWidth(calculatedWidth);
     } else {
       calculatedWidth =
-        Math.abs(calculatedWidth) + prevCalculatedWidth - sliderInnerWidth >
-        sliderInnerWidth
-          ? sliderInnerWidth
+        prevCalculatedWidth >= sliderInnerWidth
+          ? prevCalculatedWidth - sliderInnerWidth
           : 0;
       setPrevCalculatedWidth(calculatedWidth);
     }
@@ -81,104 +84,18 @@ const Slider = () => {
       <span ref={sliderViewportStart} />
       <div className={styles.sliderCardArea} ref={sliderWidth}>
         <span ref={sliderStart} />
-        <DayWeatherCard
-          slideWidth={slideWidth}
-          clicked={clicked}
-          indicatorOption={indicatorOption}
-          resetClickHandler={resetClickHandler}
-          sliderInnerWidth={sliderInnerWidth}
-        />
-        <DayWeatherCard
-          slideWidth={slideWidth}
-          clicked={clicked}
-          indicatorOption={indicatorOption}
-          resetClickHandler={resetClickHandler}
-          sliderInnerWidth={sliderInnerWidth}
-        />
-        <DayWeatherCard
-          slideWidth={slideWidth}
-          clicked={clicked}
-          indicatorOption={indicatorOption}
-          resetClickHandler={resetClickHandler}
-          sliderInnerWidth={sliderInnerWidth}
-        />
-        <DayWeatherCard
-          slideWidth={slideWidth}
-          clicked={clicked}
-          indicatorOption={indicatorOption}
-          resetClickHandler={resetClickHandler}
-          sliderInnerWidth={sliderInnerWidth}
-        />
-        <DayWeatherCard
-          slideWidth={slideWidth}
-          clicked={clicked}
-          indicatorOption={indicatorOption}
-          resetClickHandler={resetClickHandler}
-          sliderInnerWidth={sliderInnerWidth}
-        />
-        <DayWeatherCard
-          slideWidth={slideWidth}
-          clicked={clicked}
-          indicatorOption={indicatorOption}
-          resetClickHandler={resetClickHandler}
-          sliderInnerWidth={sliderInnerWidth}
-        />
-        <DayWeatherCard
-          slideWidth={slideWidth}
-          clicked={clicked}
-          indicatorOption={indicatorOption}
-          resetClickHandler={resetClickHandler}
-          sliderInnerWidth={sliderInnerWidth}
-        />
-        <DayWeatherCard
-          slideWidth={slideWidth}
-          clicked={clicked}
-          indicatorOption={indicatorOption}
-          resetClickHandler={resetClickHandler}
-          sliderInnerWidth={sliderInnerWidth}
-        />
-        <DayWeatherCard
-          slideWidth={slideWidth}
-          clicked={clicked}
-          indicatorOption={indicatorOption}
-          resetClickHandler={resetClickHandler}
-          sliderInnerWidth={sliderInnerWidth}
-        />
-        <DayWeatherCard
-          slideWidth={slideWidth}
-          clicked={clicked}
-          indicatorOption={indicatorOption}
-          resetClickHandler={resetClickHandler}
-          sliderInnerWidth={sliderInnerWidth}
-        />
-        <DayWeatherCard
-          slideWidth={slideWidth}
-          clicked={clicked}
-          indicatorOption={indicatorOption}
-          resetClickHandler={resetClickHandler}
-          sliderInnerWidth={sliderInnerWidth}
-        />
-        <DayWeatherCard
-          slideWidth={slideWidth}
-          clicked={clicked}
-          indicatorOption={indicatorOption}
-          resetClickHandler={resetClickHandler}
-          sliderInnerWidth={sliderInnerWidth}
-        />
-        <DayWeatherCard
-          slideWidth={slideWidth}
-          clicked={clicked}
-          indicatorOption={indicatorOption}
-          resetClickHandler={resetClickHandler}
-          sliderInnerWidth={sliderInnerWidth}
-        />
-        <DayWeatherCard
-          slideWidth={slideWidth}
-          clicked={clicked}
-          indicatorOption={indicatorOption}
-          resetClickHandler={resetClickHandler}
-          sliderInnerWidth={sliderInnerWidth}
-        />
+        {forecast.map((forecastDay, index) => (
+          <DayWeatherCard
+            key={forecastDay.ts}
+            slideWidth={slideWidth}
+            clicked={clicked}
+            indicatorOption={indicatorOption}
+            resetClickHandler={resetClickHandler}
+            sliderInnerWidth={sliderInnerWidth}
+            weatherData={forecastDay}
+            cardIndex={index}
+          />
+        ))}
         <span ref={sliderEnd} />
       </div>
       <span ref={sliderViewportEnd} />
@@ -194,4 +111,12 @@ const Slider = () => {
   );
 };
 
-export default Slider;
+const mapStateToProps = (state) => ({
+  forecast: state.weather.dailyForecast,
+});
+
+Slider.propTypes = {
+  forecast: PropTypes.array,
+};
+
+export default connect(mapStateToProps)(Slider);

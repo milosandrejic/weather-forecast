@@ -14,8 +14,8 @@ const bindMiddleware = (middleware) => {
 };
 
 const combinedReducer = combineReducers({
-  weatherReducer,
-  searchReducer,
+  weather: weatherReducer,
+  search: searchReducer,
 });
 
 const reducer = (state, action) => {

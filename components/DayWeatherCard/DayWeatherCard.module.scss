@@ -1,19 +1,23 @@
 @import '../../styles/variables/variables';
 
 .card {
-  width: 8rem;
+  width: 12rem;
   display: flex;
   flex-direction: column;
   align-items: baseline;
   justify-content: center;
   margin: 1rem 2rem;
   color: $color-primary;
-
+  padding: 1rem 0.5rem 2rem 0.5rem;
 
   & > * {
     margin: 0.5rem 0;
   }
 
+  &:hover {
+    background: rgba(grey, 0.3);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 0% 90%, 0% 0%);
+  }
 }
 
 .cardActive {
@@ -26,7 +30,7 @@
     50% 100%,
     40% 90%,
     0% 90%
-  );
+  ) !important;
 }
 
 .dayName {
@@ -43,7 +47,7 @@
 }
 
 .weatherDesc {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .weatherIcon {
