@@ -33,6 +33,26 @@ aliases:
         npm install
         npm run build 
         echo "Build completed"
+  - &setup-git-user
+    run:
+      name: Setup git user
+      command: |
+        git.config.global.username ${GIT_USERNAME}
+        git.config.global.email ${GIT_EMAIL}      
+  - &merge-to-dev
+    run:
+      name: Merge feature to dev
+      command: |
+        git checkout develop
+        git merge ${CIRCLE_BRANCH}
+        git push origin develop
+  - &merge-dev-to-main
+    run:
+      name: Merge develop to main branch
+      command: |
+        git checkout main
+        git merge develop
+        git push origin main
 jobs:
   build:
     executor: app-executor
@@ -43,6 +63,13 @@ jobs:
       - *install-dependencies
       - *save-cache
       - *build-project
+  git:
+     executor: app-executor
+     steps:
+       - checkout
+       - *setup-git-user
+       - *merge-to-dev
+       - *merge-dev-to-main
   linting:
     executor: app-executor
     steps:
@@ -82,4 +109,8 @@ workflows:
              branches:
                only:
                  - main
-                 - develop 
+                 - develop
+      - git:
+         requires:
+           - prettier
+          
