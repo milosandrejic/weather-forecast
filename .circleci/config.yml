@@ -37,8 +37,8 @@ aliases:
     run:
       name: Setup git user
       command: |
-        git.config.global.username ${GIT_USERNAME}
-        git.config.global.email ${GIT_EMAIL}      
+        git.config --global user.name ${GIT_USERNAME}
+        git.config --global user.email ${GIT_EMAIL}      
   - &merge-to-dev
     run:
       name: Merge feature to dev
