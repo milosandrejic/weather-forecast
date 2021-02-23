@@ -33,6 +33,18 @@ aliases:
         npm install
         npm run build 
         echo "Build completed"
+  - &deploy-to-heroku
+    run:
+      name: Deploy code to heroku
+      command: |
+        if [ "${CIRCLE_BRANCH}" == "develop" ]
+        then
+          git push https://heroku:${HEROKU_API_KEY}@git.heroku.com/weather-forecast-dev.git ${CIRCLE_BRANCH}:master -f
+        elif [ "${CIRCLE_BRANCH}" == "main"  ]
+        then
+          git push https://heroku:${HEROKU_API_KEY}@git.heroku.com/weather-info-forecast.git ${CIRCLE_BRANCH}:master -f
+        fi
+  
 jobs:
   build:
     executor: app-executor
@@ -62,6 +74,13 @@ jobs:
       - run:
           name: run prettier check
           command: npm run prettier
+  deploy-to-heroku:
+    executor: app-executor
+    steps:
+        - checkout
+        - *show-current-branch-name
+        - *restore-cache
+        - *deploy-to-heroku        
 
 workflows:
   build_and_deploy:
@@ -82,4 +101,12 @@ workflows:
              branches:
                only:
                  - main
-                 - develop 
+                 - develop
+      - deploy-to-heroku:
+          requires:
+            - prettier
+          filters:
+            branches:
+              only:
+                - main
+                - develop
