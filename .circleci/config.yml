@@ -41,6 +41,7 @@ aliases:
         then
           git push https://heroku:${HEROKU_API_KEY}@git.heroku.com/weather-forecast-dev.git ${CIRCLE_BRANCH}
         elif[ "${CIRCLE_BRANCH" == "main"}  ]
+        then
           git push https://heroku:${HEROKU_API_KEY}@git.heroku.com/weather-info-forecast.git ${CIRCLE_BRANCH}
         fi
   
