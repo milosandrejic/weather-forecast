@@ -22,5 +22,9 @@ export const getDailyForecast = (city) => async (dispatch) => {
     response.data.data,
     dispatch
   );
-  dispatchAction(weatherActionTypes.GET_DAY_DETAILS, 0, dispatch);
+};
+
+export const setActiveCardIndex = (cardIndex) => (dispatch) => {
+  dispatchAction(weatherActionTypes.SET_ACTIVE_CARD_INDEX, cardIndex, dispatch);
+  dispatchAction(weatherActionTypes.GET_DAY_DETAILS, null, dispatch);
 };

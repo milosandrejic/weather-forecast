@@ -1,7 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import dateParser, { parseDateOptions } from '../../utils/dateParser';
 import styles from './DayDetails.module.scss';
 
-const DayDetails = () => {
+const DayDetails = (props) => {
+  const { weatherDetails } = props;
+
+  const { moon_phase } = weatherDetails;
+  let { moonrise_ts, moonset_ts, sunrise_ts, sunset_ts } = weatherDetails;
+  const { rh: humidity, precip, uv, wind_spd, wind_dir } = weatherDetails;
+  const r = 55;
+
+  moonrise_ts = dateParser(moonrise_ts * 1000, parseDateOptions.GET_TIME);
+  moonset_ts = dateParser(moonset_ts * 1000, parseDateOptions.GET_TIME);
+  sunrise_ts = dateParser(sunrise_ts * 1000, parseDateOptions.GET_TIME);
+  sunset_ts = dateParser(sunset_ts * 1000, parseDateOptions.GET_TIME);
+
   return (
     <div className={styles.container}>
       <h3 className={styles.heading}>Day Details</h3>
@@ -10,12 +25,12 @@ const DayDetails = () => {
           <h4>Monrise</h4>
           <div className={styles.row}>
             <i className={`wi wi-moonrise ${styles.icon}`} />
-            <span>16:58</span>
+            <span>{moonrise_ts}</span>
           </div>
           <h4>Moonset</h4>
           <div className={styles.row}>
             <i className={`wi wi-moonset ${styles.icon}`} />
-            <span>16:58</span>
+            <span>{moonset_ts}</span>
           </div>
           <ul className={styles.moonPhasesList}>
             <li className={`${styles.moonPhaseItem} wi wi-moon-new`} />
@@ -45,12 +60,12 @@ const DayDetails = () => {
           <h4>Sunrise</h4>
           <div className={styles.row}>
             <i className={`wi wi-sunrise ${styles.icon}`} />
-            <span>16:58</span>
+            <span>{sunrise_ts}</span>
           </div>
           <h4>Sunset</h4>
           <div className={styles.row}>
             <i className={`wi wi-sunset ${styles.icon}`} />
-            <span>16:58</span>
+            <span>{sunset_ts}</span>
           </div>
         </div>
         <div className={styles.detailsCard}>
@@ -60,13 +75,13 @@ const DayDetails = () => {
               <svg height={140} width={140} className={styles.circle}>
                 <circle
                   className={` ${styles.progressCircle} ${styles.progressCircleBack}`}
-                  r={55}
+                  r={r}
                   cx={70}
                   cy={70}
                 />
                 <circle
                   className={` ${styles.progressCircle} ${styles.progressCircleFront}`}
-                  r={55}
+                  r={r}
                   cx={70}
                   cy={70}
                 />
@@ -76,7 +91,7 @@ const DayDetails = () => {
                   y="50%"
                   className={styles.progressCircleText}
                 >
-                  58%
+                  {Math.round(precip)}%
                 </text>
               </svg>
             </div>
@@ -85,13 +100,13 @@ const DayDetails = () => {
               <svg height={140} width={140} className={styles.circle}>
                 <circle
                   className={` ${styles.progressCircle} ${styles.progressCircleBack}`}
-                  r={55}
+                  r={r}
                   cx={70}
                   cy={70}
                 />
                 <circle
                   className={` ${styles.progressCircle} ${styles.progressCircleFront}`}
-                  r={55}
+                  r={r}
                   cx={70}
                   cy={70}
                 />
@@ -101,7 +116,7 @@ const DayDetails = () => {
                   y="50%"
                   className={styles.progressCircleText}
                 >
-                  6%
+                  {Math.round(humidity)}%
                 </text>
               </svg>
             </div>
@@ -112,13 +127,13 @@ const DayDetails = () => {
               <svg height={140} width={140} className={styles.circle}>
                 <circle
                   className={` ${styles.progressCircle} ${styles.progressCircleBack}`}
-                  r={55}
+                  r={r}
                   cx={70}
                   cy={70}
                 />
                 <circle
                   className={` ${styles.progressCircle} ${styles.progressCircleFront}`}
-                  r={55}
+                  r={r}
                   cx={70}
                   cy={70}
                 />
@@ -128,7 +143,7 @@ const DayDetails = () => {
                   y="50%"
                   className={styles.progressCircleText}
                 >
-                  90%
+                  {uv.toFixed(1)}
                 </text>
               </svg>
             </div>
@@ -137,13 +152,13 @@ const DayDetails = () => {
               <svg height={140} width={140} className={styles.circle}>
                 <circle
                   className={` ${styles.progressCircle} ${styles.progressCircleBack}`}
-                  r={55}
+                  r={r}
                   cx={70}
                   cy={70}
                 />
                 <circle
-                  className={` ${styles.progressCircle} ${styles.progressCircleFront}`}
-                  r={55}
+                  className={` ${styles.progressCircle} ${styles.windDirCircleFront}`}
+                  r={r}
                   cx={70}
                   cy={70}
                 />
@@ -153,7 +168,7 @@ const DayDetails = () => {
                   y="50%"
                   className={styles.progressCircleText}
                 >
-                  25%
+                  {Math.round(wind_spd)}
                 </text>
               </svg>
             </div>
@@ -164,4 +179,13 @@ const DayDetails = () => {
   );
 };
 
-export default DayDetails;
+const mapStateToProps = (state) => ({
+  weatherDetails: state.weather.dayDetails,
+});
+
+DayDetails.propTypes = {
+  weatherDetails: PropTypes.object,
+  cardIndex: PropTypes.number,
+};
+
+export default connect(mapStateToProps)(DayDetails);

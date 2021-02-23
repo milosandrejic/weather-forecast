@@ -1,10 +1,28 @@
 import React, { useRef, useEffect } from 'react';
-import propTypes from 'prop-types';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import getWeatherIcon from '../../utils/weatherIcons';
+import dateParser, { parseDateOptions } from '../../utils/dateParser';
+import { setActiveCardIndex } from '../../redux/actions/weatherActions';
 
 import styles from './DayWeatherCard.module.scss';
 
 const DayWeatherCard = (props) => {
-  const { clicked, slideWidth, resetClickHandler } = props;
+  const {
+    clicked,
+    slideWidth,
+    resetClickHandler,
+    weatherData,
+    cardIndex,
+    setActiveCardIndex,
+    activeCardIndex,
+  } = props;
+
+  const { max_temp, low_temp } = weatherData;
+  const { icon, description } = weatherData.weather;
+  let { valid_date } = weatherData;
+
+  valid_date = dateParser(valid_date, parseDateOptions.GET_SHORT_DAY_AND_DATE);
 
   const dayCard = useRef();
 
@@ -19,27 +37,42 @@ const DayWeatherCard = (props) => {
   }, [clicked]);
 
   return (
-    <div className={styles.slider} ref={dayCard}>
-      <div className={styles.card}>
-        <h4 className={styles.dayName}>Sat 13</h4>
+    <div>
+      <div
+        className={`${styles.card} ${
+          cardIndex === activeCardIndex ? styles.cardActive : null
+        }`}
+        ref={dayCard}
+        onClick={() => setActiveCardIndex(cardIndex)}
+      >
+        <h4 className={styles.dayName}>{valid_date}</h4>
         <img
           className={styles.weatherIcon}
-          src="./weather-icons/01d.svg"
+          src={`${getWeatherIcon(icon)}`}
           alt="weather icon"
         />
         <p className={styles.tempMax}>
-          - 4 <span className={styles.tempMin}>- 9</span>
+          {Math.round(max_temp)}&deg;
+          <span className={styles.tempMin}>{Math.round(low_temp)}&deg;</span>
         </p>
-        <span className={styles.weatherDesc}>Cloudy</span>
+        <span className={styles.weatherDesc}>{description}</span>
       </div>
     </div>
   );
 };
 
 DayWeatherCard.propTypes = {
-  clicked: propTypes.bool,
-  slideWidth: propTypes.number,
-  resetClickHandler: propTypes.func,
+  clicked: PropTypes.bool,
+  slideWidth: PropTypes.number,
+  resetClickHandler: PropTypes.func,
+  weatherData: PropTypes.object,
+  cardIndex: PropTypes.number,
+  setActiveCardIndex: PropTypes.func,
+  activeCardIndex: PropTypes.number,
 };
 
-export default DayWeatherCard;
+const mapStateToProps = (state) => ({
+  activeCardIndex: state.weather.activeCardIndex,
+});
+
+export default connect(mapStateToProps, { setActiveCardIndex })(DayWeatherCard);

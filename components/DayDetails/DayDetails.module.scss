@@ -75,3 +75,11 @@
   fill: $color-primary;
   font-weight: bold;
 }
+
+.windDirCircleFront {
+  stroke-dasharray: 30.00 301.59;
+  stroke-dashoffset: 0;
+  transform-origin: 50% 50%;
+  transform: rotate(-99deg);
+  stroke: #34ace0;
+}
