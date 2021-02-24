@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import styles from './PlaceHeading.module.scss';
 import getWeatherIcon from '../../utils/weatherIcons';
 
-
 const PlaceHeading = (props) => {
   const { weather } = props;
   const {
@@ -39,7 +38,10 @@ const PlaceHeading = (props) => {
       <p className={styles.weatherDescription}>{description}</p>
       <div className={styles.weatherDetailsBox}>
         <div className={styles.weatherDetailsRow}>
-          <p className={styles.weatherDetail}>Feels like: {Math.round(feelsLike) === 0 ? 0 : Math.round(feelsLike)}</p>
+          <p className={styles.weatherDetail}>
+            Feels like:{' '}
+            {Math.round(feelsLike) === 0 ? 0 : Math.round(feelsLike)}&deg;
+          </p>
           <p className={styles.weatherDetail}>
             Wind
             <i

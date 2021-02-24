@@ -1,17 +1,60 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MoonPhaseList from '../MoonPhaseList/MoonPhaseList';
 import dateParser, { parseDateOptions } from '../../utils/dateParser';
 import styles from './DayDetails.module.scss';
 import { moonPhases } from '../../utils/moonPhase';
+import {
+  calculateCircumference,
+  calculateProgress,
+  calculateUvIndex,
+} from '../../utils/progressCircle';
 
 const DayDetails = (props) => {
   const { weatherDetails, moonPhaseIndex } = props;
 
+  const precipitationProgressRef = useRef();
+  const humidityProgressRef = useRef();
+  const windDirectionRef = useRef();
+  const uvIndexRef = useRef();
+
   let { moonrise_ts, moonset_ts, sunrise_ts, sunset_ts } = weatherDetails;
   const { rh: humidity, precip, uv, wind_spd, wind_dir } = weatherDetails;
   const r = 55;
+  const circumference = calculateCircumference(r);
+  const windIndicatorWidth = 30;
+
+  useEffect(() => {
+    precipitationProgressRef.current.style.strokeDasharray = `${circumference} ${circumference}`;
+    precipitationProgressRef.current.style.strokeDashoffset = `${calculateProgress(
+      circumference,
+      precip
+    )}`;
+
+    humidityProgressRef.current.style.strokeDasharray = `${circumference} ${circumference}`;
+    humidityProgressRef.current.style.strokeDashoffset = `${calculateProgress(
+      circumference,
+      humidity
+    )}`;
+
+    uvIndexRef.current.style.strokeDasharray = `${circumference} ${circumference}`;
+    uvIndexRef.current.style.strokeDashoffset = `${calculateUvIndex(
+      circumference,
+      uv
+    )}`;
+  }, [
+    precipitationProgressRef,
+    humidityProgressRef,
+    uvIndexRef,
+    precip,
+    humidity,
+    uv,
+  ]);
+
+  useEffect(() => {
+    windDirectionRef.current.strokeDasharray = `${circumference} ${windIndicatorWidth}`;
+  }, [windDirectionRef]);
 
   moonrise_ts = dateParser(moonrise_ts * 1000, parseDateOptions.GET_TIME);
   moonset_ts = dateParser(moonset_ts * 1000, parseDateOptions.GET_TIME);
@@ -62,6 +105,7 @@ const DayDetails = (props) => {
                   cy={70}
                 />
                 <circle
+                  ref={precipitationProgressRef}
                   className={` ${styles.progressCircle} ${styles.progressCircleFront}`}
                   r={r}
                   cx={70}
@@ -87,6 +131,7 @@ const DayDetails = (props) => {
                   cy={70}
                 />
                 <circle
+                  ref={humidityProgressRef}
                   className={` ${styles.progressCircle} ${styles.progressCircleFront}`}
                   r={r}
                   cx={70}
@@ -114,6 +159,7 @@ const DayDetails = (props) => {
                   cy={70}
                 />
                 <circle
+                  ref={uvIndexRef}
                   className={` ${styles.progressCircle} ${styles.progressCircleFront}`}
                   r={r}
                   cx={70}
@@ -139,6 +185,7 @@ const DayDetails = (props) => {
                   cy={70}
                 />
                 <circle
+                  ref={windDirectionRef}
                   className={` ${styles.progressCircle} ${styles.windDirCircleFront}`}
                   r={r}
                   cx={70}
