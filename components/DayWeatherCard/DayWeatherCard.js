@@ -28,7 +28,7 @@ const DayWeatherCard = (props) => {
 
   const handleIndicatorClick = () => {
     dayCard.current.style.transform = `translateX(-${slideWidth}px`;
-    dayCard.current.style.transition = 'all 2s';
+    dayCard.current.style.transition = 'transform 2s';
     resetClickHandler();
   };
 

@@ -30,21 +30,6 @@
   margin-right: 1rem;
 }
 
-.moonPhasesList {
-  padding: 0;
-  font-size: 3rem;
-  margin: 2rem 0;
-}
-
-.moonPhaseItem {
-  margin-right: 1rem;
-  color: darken($color-primary, 40%);
-}
-
-.moonPhaseItemActive {
-  color: $color-primary;
-}
-
 .circleContainer {
   margin: 0 1rem;
   display: flex;
