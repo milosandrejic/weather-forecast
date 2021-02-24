@@ -1,0 +1,11 @@
+@import '../../styles//variables/variables';
+
+.moonPhaseItem {
+  margin-right: 1rem;
+  color: darken($color-primary, 40%);
+}
+
+.moonPhaseItemActive {
+  color: $color-primary !important;
+  transform: scale(1.2);
+}

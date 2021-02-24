@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import MoonPhaseList from '../MoonPhaseList/MoonPhaseList';
 import dateParser, { parseDateOptions } from '../../utils/dateParser';
 import styles from './DayDetails.module.scss';
+import { moonPhases } from '../../utils/moonPhase';
 
 const DayDetails = (props) => {
-  const { weatherDetails } = props;
+  const { weatherDetails, moonPhaseIndex } = props;
 
-  const { moon_phase } = weatherDetails;
   let { moonrise_ts, moonset_ts, sunrise_ts, sunset_ts } = weatherDetails;
   const { rh: humidity, precip, uv, wind_spd, wind_dir } = weatherDetails;
   const r = 55;
@@ -32,29 +33,10 @@ const DayDetails = (props) => {
             <i className={`wi wi-moonset ${styles.icon}`} />
             <span>{moonset_ts}</span>
           </div>
-          <ul className={styles.moonPhasesList}>
-            <li className={`${styles.moonPhaseItem} wi wi-moon-new`} />
-            <li
-              className={`${styles.moonPhaseItem} wi wi-moon-waxing-crescent-4`}
-            />
-            <li
-              className={`${styles.moonPhaseItem} ${styles.moonPhaseItemActive} wi wi-moon-first-quarter`}
-            />
-            <li
-              className={`${styles.moonPhaseItem} wi wi-moon-waxing-gibbous-4`}
-            />
-            <li className={`${styles.moonPhaseItem} wi wi-moon-full`} />
-            <li
-              className={`${styles.moonPhaseItem} wi wi-moon-waning-gibbous-4`}
-            />
-            <li
-              className={`${styles.moonPhaseItem} wi wi-moon-third-quarter`}
-            />
-            <li
-              className={`${styles.moonPhaseItem} wi wi-moon-waning-crescent-4`}
-            />
-          </ul>
-          <span className={styles.moonPhaseName}>Waxing Crescent</span>
+          <MoonPhaseList />
+          <span className={styles.moonPhaseName}>
+            {moonPhases[moonPhaseIndex]}
+          </span>
         </div>
         <div className={styles.detailsCard}>
           <h4>Sunrise</h4>
@@ -181,11 +163,12 @@ const DayDetails = (props) => {
 
 const mapStateToProps = (state) => ({
   weatherDetails: state.weather.dayDetails,
+  moonPhaseIndex: state.weather.moonPhaseIndex,
 });
 
 DayDetails.propTypes = {
   weatherDetails: PropTypes.object,
-  cardIndex: PropTypes.number,
+  moonPhaseIndex: PropTypes.number,
 };
 
 export default connect(mapStateToProps)(DayDetails);

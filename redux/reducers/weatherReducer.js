@@ -1,10 +1,11 @@
 import * as actionTypes from '../actionTypes/weatherActionTypes';
+import getMoonPhaseName from '../../utils/moonPhase';
 
 const initialState = {
   currentWeather: {},
   dailyForecast: [],
   dayDetails: {},
-  moonPhase: {},
+  moonPhaseIndex: 0,
   activeCardIndex: 0,
 };
 
@@ -29,6 +30,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         activeCardIndex: action.payload,
+      };
+    case actionTypes.SET_MOON_PHASE_INDEX:
+      return {
+        ...state,
+        moonPhaseIndex: getMoonPhaseName(state.dayDetails.moon_phase),
       };
     default:
       return state;
