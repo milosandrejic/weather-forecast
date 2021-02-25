@@ -9,6 +9,7 @@ import {
   calculateCircumference,
   calculateProgress,
   calculateUvIndex,
+  calculateWindDirection,
 } from '../../utils/progressCircle';
 
 const DayDetails = (props) => {
@@ -39,22 +40,13 @@ const DayDetails = (props) => {
     )}`;
 
     uvIndexRef.current.style.strokeDasharray = `${circumference} ${circumference}`;
-    uvIndexRef.current.style.strokeDashoffset = `${calculateUvIndex(
-      circumference,
-      uv
-    )}`;
-  }, [
-    precipitationProgressRef,
-    humidityProgressRef,
-    uvIndexRef,
-    precip,
-    humidity,
-    uv,
-  ]);
+    uvIndexRef.current.style.strokeDashoffset = `${calculateUvIndex(circumference, uv)}`;
+  }, [precipitationProgressRef, humidityProgressRef, uvIndexRef, precip, humidity, uv]);
 
   useEffect(() => {
-    windDirectionRef.current.strokeDasharray = `${circumference} ${windIndicatorWidth}`;
-  }, [windDirectionRef]);
+    windDirectionRef.current.style.strokeDasharray = `${windIndicatorWidth} ${circumference}`;
+    windDirectionRef.current.style.transform = `rotate(${calculateWindDirection(wind_dir)}deg)`;
+  }, [windDirectionRef, wind_dir]);
 
   moonrise_ts = dateParser(moonrise_ts * 1000, parseDateOptions.GET_TIME);
   moonset_ts = dateParser(moonset_ts * 1000, parseDateOptions.GET_TIME);
@@ -77,9 +69,7 @@ const DayDetails = (props) => {
             <span>{moonset_ts}</span>
           </div>
           <MoonPhaseList />
-          <span className={styles.moonPhaseName}>
-            {moonPhases[moonPhaseIndex]}
-          </span>
+          <span className={styles.moonPhaseName}>{moonPhases[moonPhaseIndex]}</span>
         </div>
         <div className={styles.detailsCard}>
           <h4>Sunrise</h4>
@@ -111,12 +101,7 @@ const DayDetails = (props) => {
                   cx={70}
                   cy={70}
                 />
-                <text
-                  textAnchor="middle"
-                  x="50%"
-                  y="50%"
-                  className={styles.progressCircleText}
-                >
+                <text textAnchor="middle" x="50%" y="50%" className={styles.progressCircleText}>
                   {Math.round(precip)}%
                 </text>
               </svg>
@@ -137,12 +122,7 @@ const DayDetails = (props) => {
                   cx={70}
                   cy={70}
                 />
-                <text
-                  textAnchor="middle"
-                  x="50%"
-                  y="50%"
-                  className={styles.progressCircleText}
-                >
+                <text textAnchor="middle" x="50%" y="50%" className={styles.progressCircleText}>
                   {Math.round(humidity)}%
                 </text>
               </svg>
@@ -165,41 +145,39 @@ const DayDetails = (props) => {
                   cx={70}
                   cy={70}
                 />
-                <text
-                  textAnchor="middle"
-                  x="50%"
-                  y="50%"
-                  className={styles.progressCircleText}
-                >
+                <text textAnchor="middle" x="50%" y="50%" className={styles.progressCircleText}>
                   {uv.toFixed(1)}
                 </text>
               </svg>
             </div>
             <div className={styles.circleContainer}>
               <h4 className={styles.detailName}>Wind</h4>
-              <svg height={140} width={140} className={styles.circle}>
-                <circle
-                  className={` ${styles.progressCircle} ${styles.progressCircleBack}`}
-                  r={r}
-                  cx={70}
-                  cy={70}
-                />
-                <circle
-                  ref={windDirectionRef}
-                  className={` ${styles.progressCircle} ${styles.windDirCircleFront}`}
-                  r={r}
-                  cx={70}
-                  cy={70}
-                />
-                <text
-                  textAnchor="middle"
-                  x="50%"
-                  y="50%"
-                  className={styles.progressCircleText}
-                >
-                  {Math.round(wind_spd)}
-                </text>
-              </svg>
+              <div className={styles.worldSidesContainer}>
+                <span className={`${styles.worldSide} ${styles.worldSideNorth}`}>N</span>
+                <span className={`${styles.worldSide} ${styles.worldSideEast}`}>E</span>
+                <span className={`${styles.worldSide} ${styles.worldSideWest}`}>W</span>
+                <span className={`${styles.worldSide} ${styles.worldSideSouth}`}>S</span>
+                <svg height={140} width={140} className={styles.circle}>
+                  <circle
+                    className={` ${styles.progressCircle} ${styles.progressCircleBack}`}
+                    r={r}
+                    cx={70}
+                    cy={70}
+                  />
+                  <circle
+                    ref={windDirectionRef}
+                    className={` ${styles.progressCircle} ${styles.windDirCircleFront}`}
+                    r={r}
+                    cx={70}
+                    cy={70}
+                  />
+                  <text textAnchor="middle" x="50%" y="50%" className={styles.progressCircleText}>
+                    {Math.round(wind_spd)}
+                    &nbsp;
+                    <tspan style={{ fontSize: '1.4rem' }}>km/h</tspan>
+                  </text>
+                </svg>
+              </div>
             </div>
           </div>
         </div>
