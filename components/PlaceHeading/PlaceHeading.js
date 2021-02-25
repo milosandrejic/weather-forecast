@@ -22,16 +22,10 @@ const PlaceHeading = (props) => {
     <div className={styles.placeHeading}>
       <h3 className={styles.title}>{city_name}</h3>
       <div className={styles.weatherInfoBox}>
-        <img
-          className={styles.weatherIcon}
-          src={`${getWeatherIcon(icon)}`}
-          alt="weather icon"
-        />
+        <img className={styles.weatherIcon} src={`${getWeatherIcon(icon)}`} alt="weather icon" />
         <p className={styles.temp}>{Math.round(temp)}</p>
         <ul className={styles.tempOptions}>
-          <li className={`${styles.tempOption} ${styles.tempOptionActive}`}>
-            C
-          </li>
+          <li className={`${styles.tempOption} ${styles.tempOptionActive}`}>C</li>
           <li className={styles.tempOption}>F</li>
         </ul>
       </div>
@@ -39,25 +33,18 @@ const PlaceHeading = (props) => {
       <div className={styles.weatherDetailsBox}>
         <div className={styles.weatherDetailsRow}>
           <p className={styles.weatherDetail}>
-            Feels like:{' '}
-            {Math.round(feelsLike) === 0 ? 0 : Math.round(feelsLike)}&deg;
+            Feels like: {Math.round(feelsLike) === 0 ? 0 : Math.round(feelsLike)}&deg;
           </p>
           <p className={styles.weatherDetail}>
             Wind
-            <i
-              className={`${styles.windIcon} wi wi-wind towards-${wind_dir}-deg`}
-            />
+            <i className={`${styles.windIcon} wi wi-wind towards-${wind_dir}-deg`} />
             Speed: {Math.round(wind_spd)}km/h
           </p>
           <p className={styles.weatherDetail}>Visibility {Math.round(vis)}km</p>
         </div>
         <div className={styles.weatherDetailsRow}>
-          <div className={styles.weatherDetail}>
-            Barometer: {Math.round(pres)}mb
-          </div>
-          <div className={styles.weatherDetail}>
-            Hummidity: {Math.round(humidity)}%
-          </div>
+          <div className={styles.weatherDetail}>Barometer: {Math.round(pres)}mb</div>
+          <div className={styles.weatherDetail}>Hummidity: {Math.round(humidity)}%</div>
         </div>
       </div>
     </div>

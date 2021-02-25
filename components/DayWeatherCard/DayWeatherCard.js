@@ -39,18 +39,12 @@ const DayWeatherCard = (props) => {
   return (
     <div>
       <div
-        className={`${styles.card} ${
-          cardIndex === activeCardIndex ? styles.cardActive : null
-        }`}
+        className={`${styles.card} ${cardIndex === activeCardIndex ? styles.cardActive : null}`}
         ref={dayCard}
         onClick={() => setActiveCardIndex(cardIndex)}
       >
         <h4 className={styles.dayName}>{valid_date}</h4>
-        <img
-          className={styles.weatherIcon}
-          src={`${getWeatherIcon(icon)}`}
-          alt="weather icon"
-        />
+        <img className={styles.weatherIcon} src={`${getWeatherIcon(icon)}`} alt="weather icon" />
         <p className={styles.tempMax}>
           {Math.round(max_temp)}&deg;
           <span className={styles.tempMin}>{Math.round(low_temp)}&deg;</span>

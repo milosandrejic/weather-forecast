@@ -37,9 +37,7 @@ const Slider = (props) => {
       setPrevCalculatedWidth(calculatedWidth);
     } else {
       calculatedWidth =
-        prevCalculatedWidth >= sliderInnerWidth
-          ? prevCalculatedWidth - sliderInnerWidth
-          : 0;
+        prevCalculatedWidth >= sliderInnerWidth ? prevCalculatedWidth - sliderInnerWidth : 0;
       setPrevCalculatedWidth(calculatedWidth);
     }
 
