@@ -11,6 +11,10 @@
   @include responsive(tablet) {
     flex-wrap: wrap;
   }
+
+  @include responsive(phone){
+    flex-direction: column;
+  }
 }
 
 .row {
@@ -40,12 +44,24 @@
 
   }
 
+  @include responsive(phone){
+    width: 90%;
+    margin: 5rem 2rem;
+  }
+
 }
 
 .heading {
   font-size: $heading-primary-font-size;
   letter-spacing: 3px;
   margin: 1rem 0 4rem 11%;
+
+  @include responsive(phone){
+    margin: auto;
+    width: 50%;
+    text-align: center;
+  }
+
 }
 
 .icon {

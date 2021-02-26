@@ -1,14 +1,26 @@
+@import '../../styles/abstracts/mixins';
+
 .slider {
   width: 100%;
   padding: 1rem 10%;
   position: relative;
   display: flex;
+
+  @include responsive(phone){
+    padding: 1rem 0;
+  }
+
 }
 
 .sliderCardArea {
   display: flex;
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   overflow: hidden;
+
+  @include responsive(phone){
+    overflow-x: scroll;
+  }
+
 }
 
 .indicator {
@@ -22,6 +34,11 @@
   &:focus {
     outline: none;
   }
+
+  @include responsive(phone){
+    display: none;
+  }
+
 }
 
 .indicatorLeft {
