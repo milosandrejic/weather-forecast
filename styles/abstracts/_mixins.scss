@@ -1,7 +1,7 @@
 /*
 BREAKPOINTS:
 phone-small: min-width: 320px
-phone: min-width: 480px
+phone: min-width: 400px
 tablet: min-width: 768px
 tablet-large: 992px
 desktop: 1200px
@@ -15,7 +15,7 @@ desktop: 1200px
   }
 
   @if ($breakpoint == phone) {
-    @media (min-width: 480px) {
+    @media (min-width: 400px) {
       @content;
     }
   }
