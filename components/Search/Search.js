@@ -12,6 +12,7 @@ const Search = (props) => {
   const { getDailyForecast, getCurrentWeather, setActiveCardIndex } = props;
 
   const inputRef = useRef();
+  const searchBtnRef = useRef();
 
   const getWeather = () => {
     const city = inputRef.current.value;
@@ -22,12 +23,23 @@ const Search = (props) => {
   };
 
   return (
-    <div className={styles.container}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        getWeather();
+      }}
+      className={styles.container}
+    >
       <input ref={inputRef} type="text" className={styles.searchForm} placeholder="Search place" />
-      <button className={styles.searchBtn} type="button" onClick={() => getWeather()}>
+      <button
+        onClick={() => getWeather()}
+        ref={searchBtnRef}
+        className={styles.searchBtn}
+        type="button"
+      >
         Search
       </button>
-    </div>
+    </form>
   );
 };
 
