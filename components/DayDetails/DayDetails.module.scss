@@ -102,7 +102,6 @@
 .windDirCircleFront {
   transition: transform 1s;
   transform-origin: 50% 50%;
-  transform: rotate(-99deg);
   stroke: #34ace0;
 }
 
@@ -135,4 +134,8 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.detailName {
+  margin: 2rem;
 }
