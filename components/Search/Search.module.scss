@@ -7,6 +7,7 @@
   color: #ffffff;
   font-weight: 400;
   width: 20%;
+  position: relative;
 }
 
 .searchForm {
@@ -26,35 +27,25 @@
     font-size: 1.3rem;
   }
 
-  &:focus{
+  &:focus {
     outline: none;
   }
 
-}
-
-.searchResultList {
-  list-style: none;
-  font-size: 1.5rem;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.searchResultListItem {
-  font-family: 'Roboto', sans-serif;
-  list-style: none;
-  box-sizing: border-box;
-  color: #ffffff;
-  font-weight: 400;
-  font-size: 1.5rem;
-  padding: 1rem 0.5rem;
-  width: 100%;
-  cursor: pointer;
-  background: rgba($color-primary, 0.2);
-  transition: background 0.2s;
-
-  &:hover {
-    background: rgba($color-primary, 0.3);
+  &:not(:placeholder-shown) + .searchBtn {
+    display: block;
   }
+}
 
+.searchBtn {
+  display: none;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: $btn-primary-color;
+  color: $color-primary;
+  border: none;
+  border-radius: 3px;
+  padding: 2px 4px;
+  cursor: pointer;
 }
