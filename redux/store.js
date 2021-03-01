@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk';
 import promise from 'redux-promise-middleware';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import weatherReducer from './reducers/weatherReducer';
-import searchReducer from './reducers/searchReducer';
+import errorReducer from './reducers/errorReducer';
 
 const bindMiddleware = (middleware) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -15,14 +15,14 @@ const bindMiddleware = (middleware) => {
 
 const combinedReducer = combineReducers({
   weather: weatherReducer,
-  search: searchReducer,
+  error: errorReducer,
 });
 
 const reducer = (state, action) => {
   if (action.type === HYDRATE) {
     return {
-      ...state, // use previous state
-      ...action.payload, // apply delta from hydration
+      ...state,
+      ...action.payload,
     };
   }
   return combinedReducer(state, action);

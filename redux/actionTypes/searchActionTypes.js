@@ -1,3 +1,0 @@
-export const SEARCH_QUERY = 'SEARCH_QUERY';
-export const SEARCH_RESULTS = 'SEARCH_RESULTS';
-export const RESET_SEARCH = 'RESET_SEARCH';
