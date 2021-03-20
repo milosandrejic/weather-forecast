@@ -26,7 +26,6 @@ aliases:
       command: |
         mkdir -p artifacts
         npm install
-        npm rebuild node-sass
   - &build-project
     run:
       name: Build project
