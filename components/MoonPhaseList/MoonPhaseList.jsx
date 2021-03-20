@@ -1,8 +1,8 @@
-import React from 'react';
-import { v4 } from 'uuid';
-import styles from './MoonPhaseList.module.scss';
-import { moonPhaseClasses } from '../../utils/moonPhase';
-import MoonPhase from '../MoonPhase/MoonPhase';
+import React from "react";
+import {v4} from "uuid";
+import styles from "./MoonPhaseList.module.scss";
+import {moonPhaseClasses} from "../../utils/moonPhase";
+import MoonPhase from "../MoonPhase/MoonPhase";
 
 const MoonPhaseList = () => {
   return (

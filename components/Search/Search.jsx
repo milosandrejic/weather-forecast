@@ -1,25 +1,25 @@
-import React, { useRef } from 'react';
-import { connect } from 'react-redux';
-import { PropTypes } from 'prop-types';
+import React, {useRef} from "react";
+import {connect} from "react-redux";
 import {
   getDailyForecast,
   getCurrentWeather,
   setActiveCardIndex,
-} from '../../redux/actions/weatherActions';
-import styles from './Search.module.scss';
+} from "../../redux/actions/weatherActions";
+import styles from "./Search.module.scss";
 
 const Search = (props) => {
-  const { getDailyForecast, getCurrentWeather, setActiveCardIndex } = props;
+  const {getDailyForecast, getCurrentWeather, setActiveCardIndex} = props;
 
   const inputRef = useRef();
   const searchBtnRef = useRef();
 
   const getWeather = () => {
     const city = inputRef.current.value;
+
     getCurrentWeather(city);
     getDailyForecast(city);
     setActiveCardIndex(0);
-    inputRef.current.value = '';
+    inputRef.current.value = "";
   };
 
   return (
@@ -43,10 +43,4 @@ const Search = (props) => {
   );
 };
 
-Search.propTypes = {
-  getDailyForecast: PropTypes.func,
-  getCurrentWeather: PropTypes.func,
-  setActiveCardIndex: PropTypes.func,
-};
-
-export default connect(null, { getDailyForecast, getCurrentWeather, setActiveCardIndex })(Search);
+export default connect(null, {getDailyForecast, getCurrentWeather, setActiveCardIndex})(Search);

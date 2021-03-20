@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start  -p $PORT",
-    "lint": "eslint \"./components/**/*.js\"",
+    "lint": "eslint \"./components/**/*.j{s,sx}\"",
     "prettier": "prettier --check \"./{pages, components, styles, redux}/**/*.{js,scss}\""
   },
   "cacheDirectories": [

@@ -1,12 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import DayWeatherCard from '../DayWeatherCard/DayWeatherCard';
-import styles from './Slider.module.scss';
-import indicatorType from '../../utils/slideIndicatorTypes';
+import React, {useRef, useState, useEffect} from "react";
+import {connect} from "react-redux";
+import DayWeatherCard from "../DayWeatherCard/DayWeatherCard";
+import styles from "./Slider.module.scss";
+import indicatorType from "../../utils/slideIndicatorTypes";
 
 const Slider = (props) => {
-  const { forecast } = props;
+  const {forecast} = props;
 
   const sliderStart = useRef();
   const sliderEnd = useRef();
@@ -26,18 +25,17 @@ const Slider = (props) => {
 
   const calculateSlideWidth = (type) => {
     let calculatedWidth = prevCalculatedWidth;
+
     if (type === indicatorType.RIGHT) {
-      calculatedWidth =
-        sliderEnd.current.getBoundingClientRect().left -
-        sliderViewportEnd.current.getBoundingClientRect().left;
+      calculatedWidth = sliderEnd.current.getBoundingClientRect().left
+        - sliderViewportEnd.current.getBoundingClientRect().left;
       if (calculatedWidth > sliderInnerWidth) {
         calculatedWidth = sliderInnerWidth;
       }
       calculatedWidth += prevCalculatedWidth;
       setPrevCalculatedWidth(calculatedWidth);
     } else {
-      calculatedWidth =
-        prevCalculatedWidth >= sliderInnerWidth ? prevCalculatedWidth - sliderInnerWidth : 0;
+      calculatedWidth = prevCalculatedWidth >= sliderInnerWidth ? prevCalculatedWidth - sliderInnerWidth : 0;
       setPrevCalculatedWidth(calculatedWidth);
     }
 
@@ -54,6 +52,7 @@ const Slider = (props) => {
 
   const handleIndicatorClick = (type) => {
     const translateWidth = calculateSlideWidth(type);
+
     setClicked(true);
     setSlideWidth(translateWidth);
     translateSliderStart(translateWidth);
@@ -75,7 +74,12 @@ const Slider = (props) => {
         className={`${styles.indicatorLeft} ${styles.indicator}`}
         onClick={() => handleIndicatorClick(indicatorType.LEFT)}
         role="button"
-        tabIndex="0"
+        tabIndex="-1"
+        onKeyUp={(e) => {
+          if (e.key === "Enter") {
+            handleIndicatorClick(indicatorType.LEFT);
+          }
+        }}
       >
         &lt;
       </span>
@@ -102,6 +106,11 @@ const Slider = (props) => {
         role="button"
         tabIndex={0}
         className={`${styles.indicatorRight} ${styles.indicator}`}
+        onKeyUp={(e) => {
+          if (e.key === "Enter") {
+            handleIndicatorClick(indicatorType.RIGHT);
+          }
+        }}
       >
         &gt;
       </span>
@@ -109,12 +118,8 @@ const Slider = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   forecast: state.weather.dailyForecast,
 });
-
-Slider.propTypes = {
-  forecast: PropTypes.array,
-};
 
 export default connect(mapStateToProps)(Slider);

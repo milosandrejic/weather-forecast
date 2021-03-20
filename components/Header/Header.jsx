@@ -1,7 +1,7 @@
-import React from 'react';
-import Search from '../Search/Search';
-import styles from './Header.module.scss';
-import PlaceHeading from '../PlaceHeading/PlaceHeading';
+import React from "react";
+import Search from "../Search/Search";
+import styles from "./Header.module.scss";
+import PlaceHeading from "../PlaceHeading/PlaceHeading";
 
 const Header = () => {
   return (

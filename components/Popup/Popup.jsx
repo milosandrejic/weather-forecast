@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './Popup.module.scss';
+import React from "react";
+import styles from "./Popup.module.scss";
 
 const Popup = () => {
   return (

@@ -1,27 +1,38 @@
-import React, { useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import MoonPhaseList from '../MoonPhaseList/MoonPhaseList';
-import dateParser, { parseDateOptions } from '../../utils/dateParser';
-import styles from './DayDetails.module.scss';
-import { moonPhases } from '../../utils/moonPhase';
+import React, {useRef, useEffect} from "react";
+import {connect} from "react-redux";
+import MoonPhaseList from "../MoonPhaseList/MoonPhaseList";
+import dateParser, {parseDateOptions} from "../../utils/dateParser";
+import styles from "./DayDetails.module.scss";
+import {moonPhases} from "../../utils/moonPhase";
 import {
   calculateCircumference,
   calculateProgress,
   calculateUvIndex,
   calculateWindDirection,
-} from '../../utils/progressCircle';
+} from "../../utils/progressCircle";
 
 const DayDetails = (props) => {
-  const { weatherDetails, moonPhaseIndex } = props;
+  const {weatherDetails, moonPhaseIndex} = props;
 
   const precipitationProgressRef = useRef();
   const humidityProgressRef = useRef();
   const windDirectionRef = useRef();
   const uvIndexRef = useRef();
 
-  let { moonrise_ts, moonset_ts, sunrise_ts, sunset_ts } = weatherDetails;
-  const { rh: humidity, precip, uv, wind_spd, wind_dir } = weatherDetails;
+  let {
+    moonrise_ts: moonriseTime,
+    moonset_ts: moonsetTime,
+    sunrise_ts: sunriseTime,
+    sunset_ts: sunsetTime,
+  } = weatherDetails;
+
+  const {
+    rh: humidity,
+    precip,
+    uv,
+    wind_spd: windSpeed,
+    wind_dir: windDirection,
+  } = weatherDetails;
   const r = 55;
   const circumference = calculateCircumference(r);
   const windIndicatorWidth = 30;
@@ -30,13 +41,13 @@ const DayDetails = (props) => {
     precipitationProgressRef.current.style.strokeDasharray = `${circumference} ${circumference}`;
     precipitationProgressRef.current.style.strokeDashoffset = `${calculateProgress(
       circumference,
-      precip
+      precip,
     )}`;
 
     humidityProgressRef.current.style.strokeDasharray = `${circumference} ${circumference}`;
     humidityProgressRef.current.style.strokeDashoffset = `${calculateProgress(
       circumference,
-      humidity
+      humidity,
     )}`;
 
     uvIndexRef.current.style.strokeDasharray = `${circumference} ${circumference}`;
@@ -45,13 +56,13 @@ const DayDetails = (props) => {
 
   useEffect(() => {
     windDirectionRef.current.style.strokeDasharray = `${windIndicatorWidth} ${circumference}`;
-    windDirectionRef.current.style.transform = `rotate(${calculateWindDirection(wind_dir)}deg)`;
-  }, [windDirectionRef, wind_dir]);
+    windDirectionRef.current.style.transform = `rotate(${calculateWindDirection(windDirection)}deg)`;
+  }, [windDirectionRef, windDirection]);
 
-  moonrise_ts = dateParser(moonrise_ts * 1000, parseDateOptions.GET_TIME);
-  moonset_ts = dateParser(moonset_ts * 1000, parseDateOptions.GET_TIME);
-  sunrise_ts = dateParser(sunrise_ts * 1000, parseDateOptions.GET_TIME);
-  sunset_ts = dateParser(sunset_ts * 1000, parseDateOptions.GET_TIME);
+  moonriseTime = dateParser(moonriseTime * 1000, parseDateOptions.GET_TIME);
+  moonsetTime = dateParser(moonsetTime * 1000, parseDateOptions.GET_TIME);
+  sunriseTime = dateParser(sunriseTime * 1000, parseDateOptions.GET_TIME);
+  sunsetTime = dateParser(sunsetTime * 1000, parseDateOptions.GET_TIME);
 
   return (
     <div className={styles.container}>
@@ -61,12 +72,12 @@ const DayDetails = (props) => {
           <h4>Monrise</h4>
           <div className={styles.row}>
             <i className={`wi wi-moonrise ${styles.icon}`} />
-            <span>{moonrise_ts}</span>
+            <span>{moonriseTime}</span>
           </div>
           <h4>Moonset</h4>
           <div className={styles.row}>
             <i className={`wi wi-moonset ${styles.icon}`} />
-            <span>{moonset_ts}</span>
+            <span>{moonsetTime}</span>
           </div>
           <MoonPhaseList />
           <span className={styles.moonPhaseName}>{moonPhases[moonPhaseIndex]}</span>
@@ -75,12 +86,12 @@ const DayDetails = (props) => {
           <h4>Sunrise</h4>
           <div className={styles.row}>
             <i className={`wi wi-sunrise ${styles.icon}`} />
-            <span>{sunrise_ts}</span>
+            <span>{sunriseTime}</span>
           </div>
           <h4>Sunset</h4>
           <div className={styles.row}>
             <i className={`wi wi-sunset ${styles.icon}`} />
-            <span>{sunset_ts}</span>
+            <span>{sunsetTime}</span>
           </div>
         </div>
         <div className={styles.detailsCard}>
@@ -102,7 +113,8 @@ const DayDetails = (props) => {
                   cy={70}
                 />
                 <text textAnchor="middle" x="50%" y="50%" className={styles.progressCircleText}>
-                  {Math.round(precip)}%
+                  {Math.round(precip)}
+                  %
                 </text>
               </svg>
             </div>
@@ -123,7 +135,8 @@ const DayDetails = (props) => {
                   cy={70}
                 />
                 <text textAnchor="middle" x="50%" y="50%" className={styles.progressCircleText}>
-                  {Math.round(humidity)}%
+                  {Math.round(humidity)}
+                  %
                 </text>
               </svg>
             </div>
@@ -172,9 +185,9 @@ const DayDetails = (props) => {
                     cy={70}
                   />
                   <text textAnchor="middle" x="50%" y="50%" className={styles.progressCircleText}>
-                    {Math.round(wind_spd)}
+                    {Math.round(windSpeed)}
                     &nbsp;
-                    <tspan style={{ fontSize: '1.4rem' }}>km/h</tspan>
+                    <tspan style={{fontSize: "1.4rem"}}>km/h</tspan>
                   </text>
                 </svg>
               </div>
@@ -186,14 +199,9 @@ const DayDetails = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   weatherDetails: state.weather.dayDetails,
   moonPhaseIndex: state.weather.moonPhaseIndex,
 });
-
-DayDetails.propTypes = {
-  weatherDetails: PropTypes.object,
-  moonPhaseIndex: PropTypes.number,
-};
 
 export default connect(mapStateToProps)(DayDetails);

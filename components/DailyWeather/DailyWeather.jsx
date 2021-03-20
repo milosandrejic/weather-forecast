@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './DailyWeather.module.scss';
-import Slider from '../Slider/Slider';
+import React from "react";
+import styles from "./DailyWeather.module.scss";
+import Slider from "../Slider/Slider";
 
 const DaiilyWeather = () => {
   return (
