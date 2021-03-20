@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start  -p $PORT",
-    "lint": "eslint \"./components/**/*.j{s,sx}\"",
+    "lint": "eslint \"./components/**/*.{js,jsx}\"",
     "prettier": "prettier --check \"./{pages, components, styles, redux}/**/*.{js,scss}\""
   },
   "cacheDirectories": [
@@ -17,7 +17,6 @@
     "axios": "^0.21.1",
     "next": "10.0.6",
     "next-redux-wrapper": "^6.0.2",
-    "node-sass": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -42,6 +41,7 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "node-sass": "^5.0.0",
     "node-sass-magic-importer": "^5.3.2",
     "prettier": "^2.2.1",
     "resolve-url-loader": "^3.1.2"
