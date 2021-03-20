@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start  -p $PORT",
+    "start": "next start",
     "lint": "eslint \"./components/**/*.{js,jsx}\"",
     "prettier": "prettier --check \"./{pages, components, styles, redux}/**/*.{js,scss}\""
   },
