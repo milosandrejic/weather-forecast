@@ -8,7 +8,7 @@ import styles from "./DayWeatherCard.module.scss";
 
 const DayWeatherCard = (props) => {
   const {
-    clicked,
+    isClicked,
     slideWidth,
     resetClickHandler,
     weatherData,
@@ -36,8 +36,8 @@ const DayWeatherCard = (props) => {
   };
 
   useEffect(() => {
-    if (clicked) handleIndicatorClick();
-  }, [clicked]);
+    if (isClicked) handleIndicatorClick();
+  }, [isClicked]);
 
   return (
     <div>

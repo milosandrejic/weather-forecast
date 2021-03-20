@@ -90,7 +90,7 @@ const Slider = (props) => {
           <DayWeatherCard
             key={forecastDay.ts}
             slideWidth={slideWidth}
-            clicked={clicked}
+            isClicked={clicked}
             indicatorOption={indicatorOption}
             resetClickHandler={resetClickHandler}
             sliderInnerWidth={sliderInnerWidth}
